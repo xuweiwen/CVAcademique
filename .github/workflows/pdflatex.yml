@@ -7,6 +7,9 @@ on:
   push:
     branches-ignore:
       - 'example-pdf'
+    paths:
+      - '**/*.tex'
+      - '**/*.cls'
 
 jobs:
   build-latex:
