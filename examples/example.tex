@@ -1,0 +1,285 @@
+\documentclass[letterpaper,MMMyyyy]{cvacademique}
+
+% ============================================================
+% CV Metadata (Template)
+% (Name, contact information, document title)
+% ============================================================
+
+\newcommand{\CVAuthor}{A. N. Other}
+\newcommand{\CVEmail}{email@example.com}
+\newcommand{\CVWebpage}{https://example.com}
+\newcommand{\CVPhone}{(000) 000-0000}
+\newcommand{\CVAffiliation}{Example Department}
+\newcommand{\CVInstitution}{Example Company / Organization}
+\newcommand{\CVAddress}{City, State ZIP}
+
+\newcommand{\CVTitle}{\CVAuthor's CV}
+\newcommand{\CVNote}{CV compiled in \DatestampYM{\the\year}{\the\month}}
+
+\hypersetup{
+  pdftitle={\CVTitle},
+  pdfauthor={\CVAuthor},
+  pdfsubject={\CVWebpage},
+  pdfcreator={LaTeX with CVAcademique}
+}
+
+\begin{document}
+
+% ============================================================
+% Title Block
+% ============================================================
+
+\Title{\CVAuthor}
+
+\begin{SubTitle}
+\CVAffiliation
+\hfill
+Website: \href{\CVWebpage}{\url{\CVWebpage}}
+\par
+\CVInstitution
+\hfill
+Phone: \CVPhone
+\par
+\CVAddress
+\hfill
+Email: \href{mailto:\CVEmail}{\url{\CVEmail}}
+\end{SubTitle}
+
+\begin{Body}
+
+
+% ============================================================
+% Education
+% ============================================================
+
+\Section
+{Education}
+{Education}
+{sec:education}
+
+\textbf{Example University}, City, State
+
+Degree in Example Program
+\hfill
+\DatestampYM{2016}{08} -- \DatestampYM{2022}{05}
+
+Advisor: Prof. Example Advisor
+
+\Gap
+\textbf{Example University}, City, State
+
+Degree in Example Program
+\hfill
+\DatestampYM{2012}{08} -- \DatestampYM{2016}{05}
+
+
+% ============================================================
+% Experience
+% ============================================================
+
+\Section
+{Experience}
+{Experience}
+{sec:experience}
+
+\textbf{Job Title}
+\hfill
+\DatestampYM{2022}{08} -- \DatestampP
+
+Company / Organization, City, State
+
+\BulletItem{%
+Example Description%
+}
+
+\Item{%
+Example Description without Bullet%
+}
+
+
+% ============================================================
+% Publications
+% ============================================================
+
+\Section
+{Publications}
+{Publications}
+{sec:publications}
+
+% -------- Journals --------
+
+\SubSection
+{Journals}
+{Journals}
+{sec:publications:journals}
+
+\begin{numbereditems}{J}{9}{W}{}{true}
+
+\NumberedItem{%
+\textbf{A. N. Other}, Co-author, and Co-author.
+``Example of CVAcademique Usage.''
+\textit{Example Journal},
+2023.%
+}
+
+\NumberedItem{%
+Co-author and \textbf{A. N. Other}.
+``Example of CVAcademique Usage.''
+\textit{Example Journal},
+2021.%
+}
+
+\end{numbereditems}
+
+% -------- Conference and Workshop Papers --------
+
+\Gap
+\SubSection
+{Conference \& Workshop Papers}
+{Conference \& Workshop Papers}
+{sec:publications:conference_and_workshop_papers}
+
+\begin{numbereditems}{C}{9}{W}{}{true}
+
+\NumberedItem{%
+\textbf{A. N. Other}.
+``Example of CVAcademique Usage.''
+\textit{Example Conference},
+2022.%
+}
+
+\NumberedItem{%
+Co-author, Co-author, Co-author, and \textbf{A. N. Other}.
+``Example of CVAcademique Usage.''
+\textit{Example Workshop},
+2020.%
+}
+
+\end{numbereditems}
+
+
+% ============================================================
+% Teaching
+% ============================================================
+
+\Section
+{Teaching}
+{Teaching}
+{sec:teaching}
+
+\textbf{Instructor}, Example University
+
+\BulletItem{%
+Course Number - Course Name
+\hfill
+\DatestampYS{2022}{01}%
+}
+
+\Gap
+\textbf{Teaching Assistant}, Example University
+
+\BulletItem{%
+Course Number - Course Name
+\hfill
+\DatestampYS{2019}{01} and \DatestampYS{2020}{03}%
+}
+
+
+% ============================================================
+% Professional Services
+% ============================================================
+
+\Section
+{Professional Services}
+{Professional Services}
+{sec:professional_services}
+
+% -------- Committee Membership --------
+
+\SubSection
+{Committee Membership}
+{Committee Membership}
+{sec:professional_services:committee_membership}
+
+\BulletItem{%
+Example Committee
+\hfill
+\DatestampYM{2018}{01} -- \DatestampP
+}
+
+% -------- Journal and Conference Reviewer --------
+
+\Gap
+\SubSection
+{Journal \& Conference Reviewer}
+{Journal \& Conference Reviewer}
+{sec:professional_services:journal_and_conference_reviewer}
+
+\BulletItem{%
+Example Journal, 2021%
+}
+
+\BulletItem{%
+Example Conference, 2021%
+}
+
+
+% ============================================================
+% Honors and Awards
+% ============================================================
+
+\Section
+{Honors \& Awards}
+{Honors \& Awards}
+{sec:honors_and_awards}
+
+\BulletItem{%
+Example Honor
+\hfill
+\DatestampYM{2020}{12}%
+}
+
+\BulletItem{%
+Example Award
+\hfill
+\DatestampYM{2015}{12}%
+}
+
+% ============================================================
+% Skills
+% ============================================================
+
+\Section
+{Skills}
+{Skills}
+{sec:skills}
+
+% -------- Programming Languages --------
+
+\SubSection
+{Programming Languages}
+{Programming Languages}
+{sec:skills:programming_languages}
+
+Python, C/C++
+
+% -------- Tools --------
+
+\Gap
+\SubSection
+{Tools}
+{Tools}
+{sec:skills:tools}
+
+LaTex, Git
+
+\end{Body}
+
+% ============================================================
+% Compilation Note
+% ============================================================
+
+\Gap[2]
+\CompileNote
+
+\end{document}

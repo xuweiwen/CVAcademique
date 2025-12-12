@@ -1,0 +1,58 @@
+name: LaTeX build
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches-ignore:
+      - 'example-pdf'
+
+jobs:
+  build-latex:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Install TeX Live packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            latexmk
+            # texlive-full # Use this to install full TeX Live distribution
+      - name: Build PDF
+        run: |
+          # 1. Normal version, compile 'example.pdf' in repo root
+          latexmk -pdf -interaction=nonstopmode examples/example.tex
+          # 2. Build overlappedmode version (temporary wrapper), compile 'example-overlapped.pdf' in repo root
+          cat > examples/_wrapper_overlapped.tex <<'EOF'
+          \PassOptionsToClass{overlappedmode}{cvacademique}
+          \input{examples/example.tex}
+          EOF
+          latexmk -pdf -interaction=nonstopmode -jobname=example-overlapped examples/_wrapper_overlapped.tex
+      - name: Commit and push to orphan branch
+        run: |
+          # Switch to orphan branch
+          git checkout --orphan example-pdf
+          git rm -rf .
+
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          git add -f example.pdf example-overlapped.pdf
+
+          if git diff --cached --quiet; then
+            echo "example.pdf has not changed. Skipping commit and push."
+          else
+            git commit -m "Built PDFs"
+            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+            git push -f origin example-pdf
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
