@@ -94,10 +94,10 @@
 \newcommand{\DatestampP}{Present}
 
 % -------- Date formatting options --------
-% MMMyyyy -> Jan. 2019 (default)
-\DeclareOption{MMMyyyy}{}
-% MMMMyyyy -> January 2019
-\DeclareOption{MMMMyyyy}{%
+% mmyyyy -> Jan. 2019 (default)
+\DeclareOption{mmyyyy}{}
+% mmmmyyyy -> January 2019
+\DeclareOption{mmmmyyyy}{%
   \renewcommand{\DatestampYM}[2]{\mbox{\MonthName[long]{#2}~#1}}%
 }
 % yyyy -> 2019
@@ -106,7 +106,7 @@
   \renewcommand{\DatestampYS}[2]{\mbox{#1}}%
 }
 % Default option
-\ExecuteOptions{MMMyyyy}
+\ExecuteOptions{mmyyyy}
 
 
 % ============================================================
