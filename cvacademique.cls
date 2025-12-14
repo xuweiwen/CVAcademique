@@ -25,7 +25,7 @@
 % ============================================================
 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{cvacademique}[2025/12/12 v0.1 CVAcademique document class]
+\ProvidesClass{cvacademique}[2025/12/14 v0.2 CVAcademique document class]
 
 
 % ============================================================
