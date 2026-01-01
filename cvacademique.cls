@@ -1,7 +1,7 @@
 % ============================================================
 % cvacademique.cls - Minimalist academic CV document class
 %
-% Copyright (c) 2025 Wei Xu
+% Copyright (c) 2025-Present Wei Xu
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License (LPPL),
