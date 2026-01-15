@@ -307,7 +307,7 @@
 
 % -------- Subtitle block --------
 \newenvironment{SubTitle}{%
-  \par\vspace*{0.5\baselineskip}
+  \par\vspace*{1.0\baselineskip}
   \begingroup
   \centering
   \UseMainFont
@@ -315,7 +315,7 @@
 }{%
   \par
   \endgroup
-  \vspace*{0.5\baselineskip}%
+  \vspace*{1.0\baselineskip}%
 }
 
 % -------- Main body list environment --------
@@ -367,7 +367,7 @@
 % -------- Section heading with left-column label (list-based) --------
 % \Section{LABEL}{Bookmark Title}{Bookmark ID}
 \newcommand{\Section}[3]{%
-  \Gap[1]
+  \Gap[1.2]
   \pdfbookmark[2]{#2}{#3}
   \par\vspace{0\baselineskip}
   \ifOverlappedMode
