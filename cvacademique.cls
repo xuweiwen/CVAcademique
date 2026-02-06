@@ -25,7 +25,7 @@
 % ============================================================
 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{cvacademique}[2025/12/14 v0.2 CVAcademique document class]
+\ProvidesClass{cvacademique}[2026/02/06 v0.3 CVAcademique document class]
 
 
 % ============================================================
@@ -285,7 +285,7 @@
 \raggedbottom
 % Footnote symbol formatting
 % Text\footnote{Here is an example footnote.}
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand{\thefootnote}{\arabic{footnote}} % use \fnsymbol{footnote} to show footnotes as symbols
 \renewcommand{\footnotelayout}{\UseNoteFont}
 
 
@@ -507,10 +507,32 @@
   }%
 }
 
+% -------- Numbered item note state --------
+\newcommand{\NI@NumItemNoteSymbol}{*}
+\newcommand{\NI@NumItemNoteText}{numbered item note}
+\newcommand{\SetNumItemNoteSymbol}[1]{%
+  \renewcommand{\NI@NumItemNoteSymbol}{#1}%
+}
+\newcommand{\SetNumItemNoteText}[1]{%
+  \renewcommand{\NI@NumItemNoteText}{#1}%
+}
+\newif\ifNI@hasNumItemNote
+\newcommand{\NI@maybeaddspace}{%
+  \ifcat\noexpand\nexttoken a%
+    \ %
+  \fi
+}
+\newcommand{\NumItemNote}{%
+  \NI@hasNumItemNotetrue
+  \NI@NumItemNoteSymbol
+  \futurelet\nexttoken\NI@maybeaddspace
+}
+
 % -------- Numbered item command --------
 \newcommand{\NumberedItem}[1]{%
   \par
   \begingroup
+  \NI@hasNumItemNotefalse
   \stepcounter{NumberedItemCounter}%
   \edef\NI@currentlabel{%
     \NI@makelabel{\NI@prefix}{\arabic{NumberedItemCounter}}{\NI@suffix}%
@@ -530,6 +552,9 @@
   \usebox{\NumberedItemIndentBox}%
   \ignorespaces
   #1%
+  \ifNI@hasNumItemNote
+    {\\(\NI@NumItemNoteSymbol\ \NI@NumItemNoteText)}%
+  \fi
   \par
   \endgroup
 }

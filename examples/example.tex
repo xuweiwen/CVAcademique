@@ -23,6 +23,9 @@
   pdfcreator={LaTeX with CVAcademique}
 }
 
+\SetNumItemNoteSymbol{*}
+\SetNumItemNoteText{equal contribution}
+
 \begin{document}
 
 % ============================================================
@@ -93,7 +96,7 @@ Example Description%
 }
 
 \Item{%
-Example Description without Bullet%
+Example Description without Bullet\footnote{Example footnote}%
 }
 
 
@@ -123,7 +126,7 @@ Example Description without Bullet%
 }
 
 \NumberedItem{%
-Co-author and \textbf{A. N. Other}.
+Co-author\NumItemNote and \textbf{A. N. Other}\NumItemNote.
 ``Example of CVAcademique Usage.''
 \textit{Example Journal},
 2021.%
@@ -142,7 +145,7 @@ Co-author and \textbf{A. N. Other}.
 \begin{numbereditems}{C}{9}{W}{}{true}
 
 \NumberedItem{%
-\textbf{A. N. Other}.
+\textbf{A. N. Other} and co-author.
 ``Example of CVAcademique Usage.''
 \textit{Example Conference},
 2022.%
