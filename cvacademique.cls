@@ -553,7 +553,7 @@
   \ignorespaces
   #1%
   \ifNI@hasNumItemNote
-    {\\(\NI@NumItemNoteSymbol\ \NI@NumItemNoteText)}%
+    {\\\NI@NumItemNoteSymbol\NI@NumItemNoteText.}%
   \fi
   \par
   \endgroup
