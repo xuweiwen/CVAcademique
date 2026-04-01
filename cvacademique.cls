@@ -25,7 +25,7 @@
 % ============================================================
 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{cvacademique}[2026/02/06 v0.3 CVAcademique document class]
+\ProvidesClass{cvacademique}[2026/04/01 v0.4 CVAcademique document class]
 
 
 % ============================================================
@@ -124,6 +124,8 @@
 % Required packages
 % ============================================================
 
+% Space control
+\RequirePackage{needspace}
 % Color support
 \RequirePackage{xcolor}
 % Text and math fonts (Times-like)
@@ -295,7 +297,7 @@
 
 % -------- Title block --------
 \newcommand{\Title}[1]{%
-  \par\vspace{0\baselineskip}
+  \par
   \pdfbookmark[1]{#1}{title:\thepage}
   \begingroup
     \centering
@@ -347,11 +349,13 @@
 
 % -------- Vertical spacing helper --------
 % \Gap{<scale>} -> Default: 0.5 baselineskip
-\newcommand{\Gap}[1][0.5]{\vspace{#1\baselineskip}}
+\newcommand{\Gap}[3][0.5]{%
+  \vspace{#1\baselineskip plus #2\baselineskip minus #3\baselineskip}%
+}
 
 % -------- Entry helper --------
 \newcommand{\Entry}{%
-  \par\vspace{0\baselineskip}% end previous paragraph
+  \par% end previous paragraph
   \noindent% start entry flush-left
   \ignorespaces% ignore spaces after macro
 }
@@ -367,9 +371,10 @@
 % -------- Section heading with left-column label (list-based) --------
 % \Section{LABEL}{Bookmark Title}{Bookmark ID}
 \newcommand{\Section}[3]{%
-  \Gap[1.2]
+  \Gap[1.2]{0.5}{0.3}
+  \par
+  \needspace{1\baselineskip}
   \pdfbookmark[2]{#2}{#3}
-  \par\vspace{0\baselineskip}
   \ifOverlappedMode
     % Overlapped / full-width mode
     \item[]
@@ -384,7 +389,7 @@
     \hrule height 0.4pt
     \par
     \endgroup
-    \Gap%
+    \Gap{0}{0}%
   \else
     % Normal left-column mode
     \item[%
@@ -403,7 +408,8 @@
 % -------- Subsection heading (inline) --------
 % \SubSection{LABEL}{Bookmark Title}{Bookmark ID}
 \newcommand{\SubSection}[3]{%
-  \par\vspace{0\baselineskip}
+  \par
+  \needspace{1\baselineskip}
   \pdfbookmark[3]{#2}{#3}
   {%
     \UseSubSectionFont
@@ -434,7 +440,7 @@
 
 % -------- Bulleted item --------
 \newcommand{\BulletItem}[1]{%
-  \par\vspace{0\baselineskip}%
+  \par
   \begingroup
   \parshape 2
     \LeftColWidth \linewidth
@@ -449,7 +455,7 @@
 
 % -------- Plain item --------
 \newcommand{\Item}[1]{%
-  \par\vspace{0\baselineskip}%
+  \par
   \begingroup
   \parshape 1
     \dimexpr\LeftColWidth+\BulletItemIndentWidth\relax
@@ -585,7 +591,7 @@
 % ============================================================
 
 \newcommand{\CompileNote}{%
-  \par\vspace{0\baselineskip}
+  \par
   \begingroup
   \UseNoteFont%
   \hfill[\textit{\CVNote}]%
