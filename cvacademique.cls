@@ -25,7 +25,7 @@
 % ============================================================
 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{cvacademique}[2026/04/01 v0.4 CVAcademique document class]
+\ProvidesClass{cvacademique}[2026/04/08 v0.5 CVAcademique document class]
 
 
 % ============================================================
@@ -38,11 +38,11 @@
 \DraftModefalse % default: off
 \DeclareOption{draftmode}{\DraftModetrue}
 
-% -------- Overlapped mode --------
+% -------- Single-column mode --------
 % Switch section headings span between the full page width and the left-column label
-\newif\ifOverlappedMode
-\OverlappedModefalse % default: off
-\DeclareOption{overlappedmode}{\OverlappedModetrue}
+\newif\ifSingleColumnMode
+\SingleColumnModefalse % default: off
+\DeclareOption{singlecolumn}{\SingleColumnModetrue}
 
 
 % ============================================================
@@ -171,7 +171,7 @@
 \setlength{\TitleFontSize}{1.2\BaseFontSize}
 % Section label column width
 \newlength{\LeftColWidth}
-\ifOverlappedMode
+\ifSingleColumnMode
   \setlength{\LeftColWidth}{0.5in}
 \else
   \setlength{\LeftColWidth}{1.2in}
@@ -309,7 +309,7 @@
 
 % -------- Subtitle block --------
 \newenvironment{SubTitle}{%
-  \par\vspace*{1.0\baselineskip}
+  \par\vspace*{0.5\baselineskip}
   \begingroup
   \centering
   \UseMainFont
@@ -322,7 +322,7 @@
 
 % -------- Main body list environment --------
 \newenvironment{Body}{%
-  \par\vspace{0.5\baselineskip}
+  \par
   \begingroup
   \UseMainFont
   \begin{list}{}{%
@@ -375,8 +375,8 @@
   \par
   \needspace{1\baselineskip}
   \pdfbookmark[2]{#2}{#3}
-  \ifOverlappedMode
-    % Overlapped / full-width mode
+  \ifSingleColumnMode
+    % Single-column layout
     \item[]
     \begingroup
     \parindent=0pt
@@ -391,7 +391,7 @@
     \endgroup
     \Gap{0}{0}%
   \else
-    % Normal left-column mode
+    % Marginal headings layout (default)
     \item[%
       \smash{%
         \parbox[t]{\LeftColWidth}{%
@@ -407,7 +407,20 @@
 
 % -------- Subsection heading (inline) --------
 % \SubSection{LABEL}{Bookmark Title}{Bookmark ID}
+\newif\ifFirstSubSection
+% Reset at each section
+\let\oldSection\Section
+\renewcommand{\Section}{%
+  \FirstSubSectiontrue
+  \oldSection
+}
 \newcommand{\SubSection}[3]{%
+  \ifFirstSubSection
+    % skip gap for first one
+    \FirstSubSectionfalse%
+  \else
+    \Gap[0.5]{0.2}{0.1}%
+  \fi
   \par
   \needspace{1\baselineskip}
   \pdfbookmark[3]{#2}{#3}

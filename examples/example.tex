@@ -1,4 +1,30 @@
 \documentclass[letterpaper,mmyyyy]{cvacademique}
+% ============================================================
+% Class Options:
+%
+% - Draft Mode
+%   - Option: draftmode
+%   - Default: off
+%   - Adds a visible "DRAFT" label with a compilation
+%     timestamp
+%
+% - Date Format
+%   - Options:
+%       * yyyy     -> 2025
+%       * mmyyyy   -> Dec. 2025 (default)
+%       * mmmmyyyy -> December 2025
+%   - Controls the formatting of date stamps
+%
+% - Layout Mode
+%   - Option: singlecolumn
+%   - Default: marginal headings (two-column layout with left
+%              labels)
+%   - Switches to single-column section headings
+%
+% - Other Options
+%   - All unspecified options are forwarded to the standard 
+%     LaTeX article class
+% ============================================================
 
 % ============================================================
 % CV Metadata (Template)
@@ -68,7 +94,7 @@ Degree in Example Program
 
 Advisor: Prof. Example Advisor
 
-\Gap{0}{0}
+\Gap[0.5]{0.2}{0.1}
 \textbf{Example University}, City, State
 
 Degree in Example Program
@@ -136,7 +162,6 @@ Co-author\NumItemNote and \textbf{A. N. Other}\NumItemNote.
 
 % -------- Conference and Workshop Papers --------
 
-\Gap{0}{0}
 \SubSection
 {Conference \& Workshop Papers}
 {Conference \& Workshop Papers}
@@ -178,7 +203,7 @@ Course Number: Course Name
 \DatestampYS{2022}{01}%
 }
 
-\Gap{0}{0}
+\Gap[0.5]{0.2}{0.1}
 \textbf{Teaching Assistant}, Example University
 
 \BulletItem{%
@@ -212,7 +237,6 @@ Example Committee
 
 % -------- Journal and Conference Reviewer --------
 
-\Gap{0}{0}
 \SubSection
 {Journal \& Conference Reviewer}
 {Journal \& Conference Reviewer}
@@ -268,7 +292,6 @@ Python, C/C++
 
 % -------- Tools --------
 
-\Gap{0}{0}
 \SubSection
 {Tools}
 {Tools}
@@ -282,7 +305,7 @@ LaTex, Git
 % Compilation Note
 % ============================================================
 
-\Gap[2]{0}{0}
+\Gap[2]{0.8}{0.5}
 \CompileNote
 
 \end{document}

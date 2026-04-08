@@ -33,12 +33,12 @@ jobs:
         run: |
           # 1. Normal version, compile 'example.pdf' in repo root
           latexmk -pdf -interaction=nonstopmode examples/example.tex
-          # 2. Build overlappedmode version (temporary wrapper), compile 'example-overlapped.pdf' in repo root
-          cat > examples/_wrapper_overlapped.tex <<'EOF'
-          \PassOptionsToClass{overlappedmode}{cvacademique}
+          # 2. Build single-column layout version (temporary wrapper), compile 'example-single-column.pdf' in repo root
+          cat > examples/_wrapper_single_column.tex <<'EOF'
+          \PassOptionsToClass{singlecolumn}{cvacademique}
           \input{examples/example.tex}
           EOF
-          latexmk -pdf -interaction=nonstopmode -jobname=example-overlapped examples/_wrapper_overlapped.tex
+          latexmk -pdf -interaction=nonstopmode -jobname=example-single-column examples/_wrapper_single_column.tex
       - name: Commit and push to orphan branch
         run: |
           # Switch to orphan branch
@@ -48,7 +48,7 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
 
-          git add -f example.pdf example-overlapped.pdf
+          git add -f example.pdf example-single-column.pdf
 
           if git diff --cached --quiet; then
             echo "example.pdf has not changed. Skipping commit and push."
