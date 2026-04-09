@@ -207,7 +207,7 @@
   \bfseries
 }
 % Subsection heading font
-\newcommand{\UseSubSectionFont}{%
+\newcommand{\UseSubsectionFont}{%
   \UseHeadingFont
   \fontsize{\BaseFontSize}{\LineSpacing\BaseFontSize}\selectfont
   \bfseries
@@ -216,6 +216,11 @@
 \newcommand{\UseMainFont}{%
   \UseHeadingFont
   \fontsize{\BaseFontSize}{\LineSpacing\BaseFontSize}\selectfont
+}
+% Highlight
+\definecolor{HighlightColor}{RGB}{0,70,140}
+\newcommand{\Highlight}[1]{%
+  \textcolor{HighlightColor}{\textbf{#1}}
 }
 
 
@@ -308,7 +313,7 @@
 }
 
 % -------- Subtitle block --------
-\newenvironment{SubTitle}{%
+\newenvironment{Subtitle}{%
   \par\vspace*{0.5\baselineskip}
   \begingroup
   \centering
@@ -406,18 +411,18 @@
 }
 
 % -------- Subsection heading (inline) --------
-% \SubSection{LABEL}{Bookmark Title}{Bookmark ID}
-\newif\ifFirstSubSection
+% \Subsection{LABEL}{Bookmark Title}{Bookmark ID}
+\newif\ifFirstSubsection
 % Reset at each section
 \let\oldSection\Section
 \renewcommand{\Section}{%
-  \FirstSubSectiontrue
+  \FirstSubsectiontrue
   \oldSection
 }
-\newcommand{\SubSection}[3]{%
-  \ifFirstSubSection
+\newcommand{\Subsection}[3]{%
+  \ifFirstSubsection
     % skip gap for first one
-    \FirstSubSectionfalse%
+    \FirstSubsectionfalse%
   \else
     \Gap[0.5]{0.2}{0.1}%
   \fi
@@ -425,7 +430,7 @@
   \needspace{1\baselineskip}
   \pdfbookmark[3]{#2}{#3}
   {%
-    \UseSubSectionFont
+    \UseSubsectionFont
     \raggedright
     #1
   }%
