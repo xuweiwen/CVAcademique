@@ -394,7 +394,7 @@
     \hrule height 0.4pt
     \par
     \endgroup
-    \Gap{0}{0}%
+    \Gap[0.5]{0.2}{0.1}%
   \else
     % Marginal headings layout (default)
     \item[%
