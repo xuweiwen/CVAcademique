@@ -394,7 +394,7 @@
     \hrule height 0.4pt
     \par
     \endgroup
-    \Gap[0.5]{0.2}{0.1}%
+    \Gap[0.5]{0.2}{0.1}
   \else
     % Marginal headings layout (default)
     \item[%
@@ -422,9 +422,9 @@
 \newcommand{\Subsection}[3]{%
   \ifFirstSubsection
     % skip gap for first one
-    \FirstSubsectionfalse%
+    \FirstSubsectionfalse
   \else
-    \Gap[0.5]{0.2}{0.1}%
+    \Gap[0.5]{0.2}{0.1}
   \fi
   \par
   \needspace{1\baselineskip}
@@ -439,7 +439,7 @@
 
 
 % ============================================================
-% Item layout (bulleted and plain)
+% Item layout (aligned and bulleted)
 % ============================================================
 
 % Bullet spacing and symbol
@@ -456,8 +456,32 @@
 }
 \settowidth{\BulletItemIndentWidth}{\usebox{\BulletItemIndentBox}}
 
+% -------- Aligned item --------
+\newcommand{\AlignedItem}[2]{%
+  \par
+  \noindent
+  #1%
+  \unskip\hfill
+  #2%
+  \par
+}
+
 % -------- Bulleted item --------
-\newcommand{\BulletItem}[1]{%
+\newcommand{\BulletItem}{%
+  \@ifnextchar\bgroup
+    {\BulletItem@i}
+    {\PackageError{cvacademique}
+      {Missing argument for \string\BulletItem}
+      {}}%
+}
+
+\def\BulletItem@i#1{%
+  \@ifnextchar\bgroup
+    {\BulletItem@ii{#1}}
+    {\BulletItem@ii{#1}{}}%
+}
+
+\def\BulletItem@ii#1#2{%
   \par
   \begingroup
   \parshape 2
@@ -465,21 +489,13 @@
     \dimexpr\LeftColWidth+\BulletItemIndentWidth\relax
     \dimexpr\linewidth-\BulletItemIndentWidth\relax
   \usebox{\BulletItemIndentBox}%
-  \ignorespaces%
+  \ignorespaces
   #1%
-  \par
-  \endgroup
-}
-
-% -------- Plain item --------
-\newcommand{\Item}[1]{%
-  \par
-  \begingroup
-  \parshape 1
-    \dimexpr\LeftColWidth+\BulletItemIndentWidth\relax
-    \dimexpr\linewidth-\BulletItemIndentWidth\relax
-  \ignorespaces%
-  #1%
+  \if\relax\detokenize{#2}\relax
+  \else
+    \unskip\hfill
+    #2%
+  \fi
   \par
   \endgroup
 }
