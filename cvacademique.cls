@@ -368,6 +368,22 @@
 % -------- Conditional suppression helper --------
 \newcommand{\Hide}[1]{}
 
+% -------- Repeated em-dash continuation marker --------
+% \DashContinuation{<count>}
+\newcount\DashContinuationCount
+\newcommand{\DashContinuation}[1]{%
+  \begingroup
+  \DashContinuationCount=0
+  \makebox[#1em][l]{%
+    \loop
+      \ifnum\DashContinuationCount<#1
+        \textemdash
+        \advance\DashContinuationCount by 1
+    \repeat
+  }%
+  \endgroup
+}
+
 
 % ============================================================
 % Sectioning commands
