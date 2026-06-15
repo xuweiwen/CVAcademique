@@ -322,7 +322,7 @@
 }{%
   \par
   \endgroup
-  \vspace*{1.0\baselineskip}%
+  \vspace*{0.5\baselineskip}%
 }
 
 % -------- Main body list environment --------
